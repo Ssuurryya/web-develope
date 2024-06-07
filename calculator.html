@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        .parent-div {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            background-color: rgb(35, 35, 35);
+            color: white;
+            padding: 10px;
+            border-radius: 25px;
+        }
+
+        .child {
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            transform: translate(-50%, -50%);
+            width: 30vw;
+        }
+
+        .button-div {
+            margin: .2em;
+            padding: 1em;
+            display: flex;
+            flex-wrap: wrap;
+            width: 22vw;
+            margin-top: 5px;
+        }
+
+        button {
+            font-size: 2rem;
+            padding: 23px;
+            border-radius: 1.5rem;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .display {
+            width: 15vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="" name="calcu" class="child" onsubmit="event.preventDefault();" style="display: flex; justify-content: center; align-content: center; flex-direction: column; width: 300px;margin-top: 200px; margin-left: 100px;width: 330px;">
+            <input type="text" placeholder=" " name="textbox" id="display" class="display" readonly style="height: 3rem; border-radius: 25px; width:320px; font-size: 25px;">
+            <div class="button-div">
+                <button type="button" value="C" style="background-color: rgb(244, 83, 83); padding-right: 80px; text-align: center;" onclick="textdisplay(this.value)">AC</button>
+                <button type="button" value="/" onclick="textdisplay(this.value)">/</button>
+                <button type="button" value="*" onclick="textdisplay(this.value)">*</button>
+                <button type="button" value="7" onclick="textdisplay(this.value)">7</button>
+                <button type="button" value="8" onclick="textdisplay(this.value)">8</button>
+                <button type="button" value="9" onclick="textdisplay(this.value)">9</button>
+                <button type="button" value="-" onclick="textdisplay(this.value)">-</button>
+                <button type="button" value="4" onclick="textdisplay(this.value)">4</button>
+                <button type="button" value="5" onclick="textdisplay(this.value)">5</button>
+                <button type="button" value="6" onclick="textdisplay(this.value)">6</button>
+                <button type="button" value="+" onclick="textdisplay(this.value)">+</button>
+                <button type="button" value="1" onclick="textdisplay(this.value)">1</button>
+                <button type="button" value="2" onclick="textdisplay(this.value)">2</button>
+                <button type="button" value="3" onclick="textdisplay(this.value)">3</button>
+                <button type="button" value="0" onclick="textdisplay(this.value)">0</button>
+                <button type="button" value="." onclick="textdisplay(this.value)" style="padding: .8em;">.</button>
+                <button type="button" value="00" onclick="textdisplay(this.value) " style="font-size: 1rem; padding: 1.4em; margin-left: .2em;">00</button>
+                <button type="button" value="%" onclick="textdisplay(this.value)" style="font-size: 1rem; padding: 1.5em; margin-right: .5em;">%</button>
+                <button type="button" value="=" style="background-color: green;"onclick="textdisplay(this.value)" style="margin-left: .2em;">=</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        let calcString = '';
+        function textdisplay(textvalue) {
+            if (textvalue === '=') {
+                try {
+                    let evaluationvalue = eval(calcString);
+                    document.querySelector('.display').value = evaluationvalue;
+                    calcString = evaluationvalue.toString();
+                } catch {
+                    document.querySelector('.display').value = 'Error';
+                    calcString = '';
+                }
+            } else if (textvalue === 'C') {
+                calcString = '';
+                document.querySelector('.display').value = calcString;
+            } else {
+                calcString += textvalue;
+                document.querySelector('.display').value = calcString;
+            }
+        }
+    </script>
+</body>
+
+</html>
